@@ -1,10 +1,18 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Cyber Threat Intelligence</title>
 </head>
 <body>
-
+    <h1>Latest Threats</h1>
+    <ul>
+        {% for threat in threats %}
+            <li>
+                <strong>{{ threat.name }}</strong> ({{ threat.severity }})
+                <p>{{ threat.description }}</p>
+                <a href="{% url 'save_threat' threat.id %}">Save</a>
+            </li>
+        {% endfor %}
+    </ul>
 </body>
 </html>
