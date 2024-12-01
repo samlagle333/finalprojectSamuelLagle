@@ -1,16 +1,15 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Threat Intelligence</title>
+    <title>Bookmarked Threats</title>
 </head>
 <body>
-    <h1>Latest Threats</h1>
+    <h1>Your Bookmarks</h1>
     <ul>
-        {% for threat in threats %}
+        {% for threat in bookmarks %}
             <li>
                 <strong>{{ threat.name }}</strong> ({{ threat.severity }})
                 <p>{{ threat.description }}</p>
-                <a href="{% url 'save_threat' threat.id %}">Bookmark</a>
             </li>
         {% endfor %}
     </ul>
