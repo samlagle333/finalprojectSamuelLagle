@@ -3,6 +3,8 @@ from django.shortcuts import render, redirect
 from .models import Bookmark
 from .forms import OSINTQueryForm
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth import login
+from .forms import RegistrationForm
 
 API_URL = "https://whatsapp-osint.p.rapidapi.com/endpoint"
 API_HEADERS = {
@@ -35,3 +37,14 @@ def bookmark_result(request):
 def view_bookmarks(request):
     bookmarks = Bookmark.objects.filter(user=request.user)
     return render(request, 'osintapp/bookmarks.html', {'bookmarks': bookmarks})
+
+def register(request):
+    if request.method == 'POST':
+        form = RegistrationForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            login(request, user)  # Log the user in after registration
+            return redirect('search')  # Redirect to your main search page
+    else:
+        form = RegistrationForm()
+    return render(request, 'registration/register.html', {'form': form})

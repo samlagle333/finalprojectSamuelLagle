@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Cybersecurity App{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="{% url 'search' %}">Home</a></li>
+                {% if user.is_authenticated %}
+                    <li><a href="{% url 'bookmarks' %}">Bookmarks</a></li>
+                    <li><a href="{% url 'logout' %}">Logout</a></li>
+                    <li>Welcome, {{ user.username }}!</li>
+                {% else %}
+                    <li><a href="{% url 'login' %}">Login</a></li>
+                    <li><a href="{% url 'register' %}">Register</a></li>
+                {% endif %}
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        {% block content %}
+        <!-- Child templates will insert content here -->
+        {% endblock %}
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Cybersecurity App</p>
+    </footer>
+</body>
+</html>
