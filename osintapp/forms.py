@@ -8,3 +8,10 @@ class RegistrationForm(UserCreationForm):
     class Meta:
         model = User
         fields = ['username', 'email', 'password1', 'password2']
+
+class OSINTQueryForm(forms.Form):
+    phone_number = forms.CharField(
+        max_length=15,
+        label="Phone Number",
+        widget=forms.TextInput(attrs={'placeholder': 'Enter phone number'})
+    )

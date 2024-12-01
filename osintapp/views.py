@@ -3,14 +3,21 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login
 from .forms import RegistrationForm
 from .models import Bookmark
+from .forms import OSINTQueryForm
 
+@login_required
 @login_required
 def search_view(request):
     if request.method == 'POST':
-        # Replace with actual API call logic
-        result = {"message": "API search result goes here"}
-        return render(request, 'osintapp/results.html', {'data': result})
-    return render(request, 'osintapp/search.html')
+        form = OSINTQueryForm(request.POST)
+        if form.is_valid():
+            # Simulate search result
+            result = {"message": "Search completed successfully!"}
+            return render(request, 'osintapp/results.html', {'data': result})
+    else:
+        form = OSINTQueryForm()  # Pass an empty form for GET requests
+
+    return render(request, 'osintapp/search.html', {'form': form})
 
 @login_required
 def bookmark_result(request):
@@ -38,3 +45,6 @@ def register(request):
 
 def home_redirect(request):
     return redirect('login')
+
+def home_view(request):
+    return render(request, 'osintapp/home.html')

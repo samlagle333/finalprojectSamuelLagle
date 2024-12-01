@@ -42,3 +42,17 @@ footer {
     bottom: 0;
     width: 100%;
 }
+
+form {
+    margin: 20px 0;
+    padding: 10px;
+    border: 1px solid #ddd;
+    background: #f9f9f9;
+}
+
+input {
+    padding: 10px;
+    margin: 5px 0;
+    width: 100%;
+    max-width: 400px;
+}

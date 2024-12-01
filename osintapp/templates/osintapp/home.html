@@ -1,0 +1,8 @@
+{% extends 'base.html' %}
+
+{% block title %}Welcome{% endblock %}
+
+{% block content %}
+<h1>Welcome to the Cybersecurity App</h1>
+<p>Please <a href="{% url 'login' %}">login</a> or <a href="{% url 'register' %}">register</a> to use the application.</p>
+{% endblock %}
