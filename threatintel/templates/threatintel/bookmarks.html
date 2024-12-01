@@ -1,17 +1,37 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Bookmarked Threats</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Bookmarked Threats</title>
 </head>
 <body>
-    <h1>Your Bookmarks</h1>
-    <ul>
-        {% for threat in bookmarks %}
-            <li>
-                <strong>{{ threat.name }}</strong> ({{ threat.severity }})
-                <p>{{ threat.description }}</p>
-            </li>
-        {% endfor %}
-    </ul>
+    <header>
+        <h1>Your Bookmarked Threats</h1>
+        <nav>
+            <a href="{% url 'fetch_threats' %}">Home</a>
+            <form action="{% url 'logout' %}" method="post" style="display:inline;">
+                {% csrf_token %}
+                <button type="submit">Logout</button>
+            </form>
+        </nav>
+    </header>
+
+    <section>
+        <ul>
+            {% for threat in bookmarks %}
+                <li>
+                    <strong>{{ threat.name }}</strong> (Severity: {{ threat.severity }})
+                    <p>{{ threat.description }}</p>
+                </li>
+            {% empty %}
+                <p>You have no bookmarks yet.</p>
+            {% endfor %}
+        </ul>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Cyber Threat Intelligence Dashboard</p>
+    </footer>
 </body>
 </html>

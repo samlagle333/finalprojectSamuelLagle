@@ -11,12 +11,14 @@
         <h1>Cyber Threat Intelligence</h1>
         <nav>
             {% if user.is_authenticated %}
-                <p>Welcome, {{ user.username }}!</p>
-                <!-- Logout form -->
-                <form action="{% url 'logout' %}" method="post" style="display:inline;">
-                    {% csrf_token %}
-                    <button type="submit">Logout</button>
-                </form>
+                <p>
+                    Welcome, {{ user.username }}!
+                    <a href="{% url 'view_bookmarks' %}">My Bookmarks</a>
+                    <form action="{% url 'logout' %}" method="post" style="display:inline;">
+                        {% csrf_token %}
+                        <button type="submit">Logout</button>
+                    </form>
+                </p>
             {% else %}
                 <p><a href="{% url 'account_login' %}">Login</a> | <a href="{% url 'account_signup' %}">Sign Up</a></p>
             {% endif %}
