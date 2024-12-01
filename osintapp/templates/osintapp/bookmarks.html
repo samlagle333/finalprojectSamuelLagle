@@ -1,6 +1,22 @@
+{% extends 'base.html' %}
+
+{% block title %}Your Bookmarks{% endblock %}
+
+{% block content %}
 <h1>Your Bookmarked Results</h1>
-<ul>
-    {% for bookmark in bookmarks %}
-        <li>{{ bookmark.query }}: {{ bookmark.result }}</li>
-    {% endfor %}
-</ul>
+
+{% if bookmarks %}
+    <ul>
+        {% for bookmark in bookmarks %}
+            <li>
+                <strong>Query:</strong> {{ bookmark.query }}<br>
+                <strong>Result:</strong> {{ bookmark.result }}
+            </li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>You have no bookmarks.</p>
+{% endif %}
+
+<a href="{% url 'search' %}">Back to Search</a>
+{% endblock %}

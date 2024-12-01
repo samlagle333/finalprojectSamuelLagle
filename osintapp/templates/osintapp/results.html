@@ -1,2 +1,21 @@
-<h1>Results</h1>
-<p>{{ data.message }}</p>
+{% extends 'base.html' %}
+
+{% block title %}Search Results{% endblock %}
+
+{% block content %}
+<h1>Search Results</h1>
+
+{% if data %}
+    <p>{{ data.message }}</p>
+    <form method="POST" action="{% url 'bookmark' %}">
+        {% csrf_token %}
+        <input type="hidden" name="query" value="Your Query Here">
+        <input type="hidden" name="result" value="{{ data.message }}">
+        <button type="submit">Bookmark Result</button>
+    </form>
+{% else %}
+    <p>No results found.</p>
+{% endif %}
+
+<a href="{% url 'search' %}">Back to Search</a>
+{% endblock %}
