@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>WhatsApp Profile Information</title>
+</head>
+<body>
+    <h1>WhatsApp Profile Information</h1>
+    <form method="post">
+        {% csrf_token %}
+        <label for="phone_number">Phone Number:</label>
+        <input type="text" id="phone_number" name="phone_number" required>
+        <button type="submit">Get Profile</button>
+    </form>
+
+    {% if profile_data %}
+        <h2>Profile Details</h2>
+        <p><strong>Name:</strong> {{ profile_data.name }}</p>
+        <p><strong>Status:</strong> {{ profile_data.status }}</p>
+        <!-- Add more fields as needed -->
+    {% elif profile_data is not none %}
+        <p>No profile information found for the provided phone number.</p>
+    {% endif %}
+</body>
+</html>

@@ -1,0 +1,6 @@
+<h1>Your Bookmarked Results</h1>
+<ul>
+    {% for bookmark in bookmarks %}
+        <li>{{ bookmark.query }}: {{ bookmark.result }}</li>
+    {% endfor %}
+</ul>
