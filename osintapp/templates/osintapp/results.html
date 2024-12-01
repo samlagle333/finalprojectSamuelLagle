@@ -5,14 +5,13 @@
 {% block content %}
 <h1>Search Results</h1>
 
-{% if data %}
-    <p>{{ data.message }}</p>
-    <form method="POST" action="{% url 'bookmark' %}">
-        {% csrf_token %}
-        <input type="hidden" name="query" value="Your Query Here">
-        <input type="hidden" name="result" value="{{ data.message }}">
-        <button type="submit">Bookmark Result</button>
-    </form>
+{% if error %}
+    <p>{{ error }}</p>
+{% elif data %}
+    <p><strong>Phone Number:</strong> {{ data.phone }}</p>
+    <p><strong>Status:</strong> {{ data.status }}</p>
+    <p><strong>Last Seen:</strong> {{ data.last_seen }}</p>
+    <p><strong>Other Data:</strong> {{ data.other_info }}</p> <!-- Replace with actual fields -->
 {% else %}
     <p>No results found.</p>
 {% endif %}

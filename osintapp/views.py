@@ -4,18 +4,39 @@ from django.contrib.auth import login, logout
 from .forms import RegistrationForm
 from .models import Bookmark
 from .forms import OSINTQueryForm
+import requests
 
-@login_required
+
+API_URL = "https://whatsapp-osint.p.rapidapi.com/wspic/b64"
+API_HEADERS = {
+    "X-RapidAPI-Key": "caafce8f48mshe698c049de34644p14ad42jsn83c541d8480c",
+    "X-RapidAPI-Host": "whatsapp-osint.p.rapidapi.com",
+}
+
+
 @login_required
 def search_view(request):
     if request.method == 'POST':
         form = OSINTQueryForm(request.POST)
         if form.is_valid():
-            # Simulate search result
-            result = {"message": "Search completed successfully!"}
-            return render(request, 'osintapp/results.html', {'data': result})
+            phone_number = form.cleaned_data['phone_number']
+
+            # Make the API call
+            response = requests.get(
+                API_URL,
+                headers=API_HEADERS,
+                params={"phone": phone_number}
+            )
+
+            # Handle the API response
+            if response.status_code == 200:
+                data = response.json()  # Parse the JSON response
+                return render(request, 'osintapp/results.html', {'data': data})
+            else:
+                error_message = f"Error: Unable to fetch data. (Status Code: {response.status_code})"
+                return render(request, 'osintapp/results.html', {'error': error_message})
     else:
-        form = OSINTQueryForm()  # Pass an empty form for GET requests
+        form = OSINTQueryForm()
 
     return render(request, 'osintapp/search.html', {'form': form})
 
