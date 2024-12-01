@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth import login
+from django.contrib.auth import login, logout
 from .forms import RegistrationForm
 from .models import Bookmark
 from .forms import OSINTQueryForm
@@ -48,3 +48,7 @@ def home_redirect(request):
 
 def home_view(request):
     return render(request, 'osintapp/home.html')
+
+def custom_logout(request):
+    logout(request)
+    return render(request, 'osintapp/logout.html')
