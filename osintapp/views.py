@@ -7,10 +7,10 @@ from .forms import OSINTQueryForm
 import requests
 
 
-API_URL = "https://whatsapp-osint.p.rapidapi.com/wspic/b64"
+API_URL = ""
 API_HEADERS = {
-    "X-RapidAPI-Key": "caafce8f48mshe698c049de34644p14ad42jsn83c541d8480c",
-    "X-RapidAPI-Host": "whatsapp-osint.p.rapidapi.com",
+    "X-RapidAPI-Key": "",
+    "X-RapidAPI-Host": "",
 }
 
 
