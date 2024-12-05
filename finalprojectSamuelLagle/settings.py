@@ -1,4 +1,5 @@
 from pathlib import Path
+from decouple import config
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -78,3 +79,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 LOGIN_REDIRECT_URL = '/search/'
 LOGOUT_REDIRECT_URL = '/accounts/login/'
+
+API_KEY = config('API_KEY')
+API_HOST = config('API_HOST')

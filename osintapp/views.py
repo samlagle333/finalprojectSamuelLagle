@@ -4,13 +4,14 @@ from django.contrib.auth import login, logout
 from .forms import RegistrationForm
 from .models import Bookmark
 from .forms import OSINTQueryForm
+from django.conf import settings
 import requests
 
 
-API_URL = ""
+API_URL = "https://whatsapp-osint.p.rapidapi.com/endpoint"
 API_HEADERS = {
-    "X-RapidAPI-Key": "",
-    "X-RapidAPI-Host": "",
+    "X-RapidAPI-Key": settings.API_KEY,
+    "X-RapidAPI-Host": settings.API_HOST,
 }
 
 
