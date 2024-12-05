@@ -1,9 +1,9 @@
 {% extends 'base.html' %}
 
-{% block title %}DCK Results{% endblock %}
+{% block title %}Check if number is registered - Results{% endblock %}
 
 {% block content %}
-<h1>DCK Results</h1>
+<h1>Check if number is registered results</h1>
 
 {% if error %}
     <p>{{ error }}</p>
@@ -14,5 +14,5 @@
     <p>No results found.</p>
 {% endif %}
 
-<a href="{% url 'check_dck' %}">Back to Check DCK</a>
+<a href="{% url 'check_dck' %}">Back to check if number is registered</a>
 {% endblock %}

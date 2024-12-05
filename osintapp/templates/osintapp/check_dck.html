@@ -1,9 +1,9 @@
 {% extends 'base.html' %}
 
-{% block title %}Check DCK{% endblock %}
+{% block title %}Check if number is registered{% endblock %}
 
 {% block content %}
-<h1>Check DCK</h1>
+<h1>Check if number is registered</h1>
 <form method="POST">
     {% csrf_token %}
     <label for="phone_number">Phone Number:</label>

@@ -1,9 +1,9 @@
 {% extends 'base.html' %}
 
-{% block title %}About Results{% endblock %}
+{% block title %}User Status Results{% endblock %}
 
 {% block content %}
-<h1>About Results</h1>
+<h1>Status Results</h1>
 
 {% if error %}
     <p>{{ error }}</p>
@@ -14,5 +14,5 @@
     <p>No results found.</p>
 {% endif %}
 
-<a href="{% url 'check_about' %}">Back to Check About</a>
+<a href="{% url 'check_about' %}">Back to Check User Status</a>
 {% endblock %}

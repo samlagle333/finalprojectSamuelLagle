@@ -6,10 +6,10 @@
 <body>
     <nav>
         {% if user.is_authenticated %}
-            <li><a href="{% url 'search' %}">Search</a></li>
+            <li><a href="{% url 'search' %}">Search for a profile picture</a></li>
             <li><a href="{% url 'bookmarks' %}">Bookmarks</a></li>
-            <li><a href="{% url 'check_dck' %}">Check DCK</a></li>
-            <li><a href="{% url 'check_about' %}">Check About</a></li>
+            <li><a href="{% url 'check_dck' %}">Check if number is registered</a></li>
+            <li><a href="{% url 'check_about' %}">Check user WhatsApp status</a></li>
             <li><a href="{% url 'logout' %}">Logout</a></li>
         {% else %}
             <li><a href="{% url 'login' %}">Login</a></li>
