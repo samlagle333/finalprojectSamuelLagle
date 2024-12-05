@@ -22,19 +22,26 @@ def search_view(request):
         if form.is_valid():
             phone_number = form.cleaned_data['phone_number']
 
-            # Make the API call
-            response = requests.get(
-                API_URL,
-                headers=API_HEADERS,
-                params={"phone": phone_number}
-            )
+            # API Request
+            url = "https://whatsapp-osint.p.rapidapi.com/wspic/b64"
+            querystring = {"phone": phone_number}
+            headers = {
+                "x-rapidapi-key": settings.API_KEY,
+                "x-rapidapi-host": settings.API_HOST,
+            }
+
+            response = requests.get(url, headers=headers, params=querystring)
 
             # Handle the API response
             if response.status_code == 200:
-                data = response.json()  # Parse the JSON response
-                return render(request, 'osintapp/results.html', {'data': data})
+                try:
+                    data = response.json()
+                    return render(request, 'osintapp/results.html', {'data': data})
+                except ValueError:
+                    error_message = "Invalid response from the API."
+                    return render(request, 'osintapp/results.html', {'error': error_message})
             else:
-                error_message = f"Error: Unable to fetch data. (Status Code: {response.status_code})"
+                error_message = f"API Error: {response.status_code} - {response.text}"
                 return render(request, 'osintapp/results.html', {'error': error_message})
     else:
         form = OSINTQueryForm()
