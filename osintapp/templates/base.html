@@ -1,21 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>{% block title %}Cybersecurity App{% endblock %}</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}My App{% endblock %}</title>
 </head>
 <body>
-    <nav>
-        {% if user.is_authenticated %}
-            <li><a href="{% url 'search' %}">Search for a profile picture</a></li>
-            <li><a href="{% url 'bookmarks' %}">Bookmarks</a></li>
-            <li><a href="{% url 'check_dck' %}">Check if number is registered</a></li>
-            <li><a href="{% url 'check_about' %}">Check user WhatsApp status</a></li>
-            <li><a href="{% url 'logout' %}">Logout</a></li>
-        {% else %}
-            <li><a href="{% url 'login' %}">Login</a></li>
-            <li><a href="{% url 'register' %}">Register</a></li>
-        {% endif %}
-    </nav>
+    <header>
+        <nav>
+            <ul>
+                {% if user.is_authenticated %}
+                    <!-- Show these links only for logged-in users -->
+                    <li><a href="{% url 'search' %}">Search</a></li>
+                    <li><a href="{% url 'bookmarks' %}">Bookmarks</a></li>
+                    <li><a href="{% url 'check_dck' %}">Check DCK</a></li>
+                    <li><a href="{% url 'check_about' %}">Check About</a></li>
+                    <li><a href="{% url 'logout' %}">Logout</a></li>
+                {% else %}
+                    <!-- Show these links only for non-logged-in users -->
+                    <li><a href="{% url 'login' %}">Login</a></li>
+                    <li><a href="{% url 'register' %}">Register</a></li>
+                {% endif %}
+            </ul>
+        </nav>
+    </header>
     <main>
         {% block content %}{% endblock %}
     </main>
