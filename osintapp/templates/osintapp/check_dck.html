@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block title %}Check DCK{% endblock %}
+
+{% block content %}
+<h1>Check DCK</h1>
+<form method="POST">
+    {% csrf_token %}
+    <label for="phone_number">Phone Number:</label>
+    <input type="text" id="phone_number" name="phone_number" placeholder="Enter phone number" required>
+    <button type="submit">Check</button>
+</form>
+{% endblock %}

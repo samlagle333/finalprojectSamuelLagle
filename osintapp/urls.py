@@ -8,4 +8,5 @@ urlpatterns = [
     path('bookmark/', views.bookmark_result, name='bookmark'),
     path('bookmarks/', views.view_bookmarks, name='bookmarks'),
     path('logout/', views.custom_logout, name='logout'),
+    path('check_dck/', views.check_dck, name='check_dck'),
 ]
