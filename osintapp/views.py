@@ -82,6 +82,34 @@ def check_dck(request):
     else:
         return render(request, 'osintapp/check_dck.html')
 
+@login_required
+def check_about(request):
+    if request.method == 'POST':
+        phone_number = request.POST.get('phone_number')
+
+        # API Request
+        url = "https://whatsapp-osint.p.rapidapi.com/about"
+        querystring = {"phone": phone_number}
+        headers = {
+            "x-rapidapi-key": settings.API_KEY,
+            "x-rapidapi-host": settings.API_HOST,
+        }
+
+        response = requests.get(url, headers=headers, params=querystring)
+
+        # Handle API response
+        if response.status_code == 200:
+            try:
+                data = response.json()
+                return render(request, 'osintapp/check_about_results.html', {'data': data})
+            except ValueError:
+                error_message = "Invalid response from the API."
+                return render(request, 'osintapp/check_about_results.html', {'error': error_message})
+        else:
+            error_message = f"API Error: {response.status_code} - {response.text}"
+            return render(request, 'osintapp/check_about_results.html', {'error': error_message})
+    else:
+        return render(request, 'osintapp/check_about.html')
 
 @login_required
 def bookmark_result(request):

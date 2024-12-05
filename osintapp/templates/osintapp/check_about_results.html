@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block title %}About Results{% endblock %}
+
+{% block content %}
+<h1>About Results</h1>
+
+{% if error %}
+    <p>{{ error }}</p>
+{% elif data %}
+    <p><strong>Response:</strong></p>
+    <pre>{{ data }}</pre> <!-- Display raw JSON for debugging -->
+{% else %}
+    <p>No results found.</p>
+{% endif %}
+
+<a href="{% url 'check_about' %}">Back to Check About</a>
+{% endblock %}
